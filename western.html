@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Western Dresses - ZeeShoo!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box; 
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f3f6;
+            color: #333;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #e081aa;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        #logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            font-style: italic;
+        }
+        
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 30px;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            max-width: 500px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .nav-links a:hover {
+            color: #5a0a2a;
+        }
+        
+        /* Page Banner */
+        .page-banner {
+            background: linear-gradient(135deg, rgba(226, 129, 170, 0.8), rgba(195, 34, 104, 0.7)), 
+                        url('https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .banner-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        .banner-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            line-height: 1.6;
+        }
+        
+        .shop-now-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #c32268;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid #c32268;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        
+        .shop-now-btn:hover {
+            background-color: transparent;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Shop Content */
+        .shop-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .shop-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            color: #5a0a2a;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #c32268;
+        }
+        
+        .section-subtitle {
+            color: #c32268;
+            font-size: 1.2rem;
+            font-style: italic;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .product-img {
+            height: 350px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #c32268;
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            color: #5a0a2a;
+        }
+        
+        .product-info p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .price {
+            color: #c32268;
+            font-weight: bold;
+            font-size: 1.3rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1rem;
+            margin-left: 8px;
+        }
+        
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            background-color: #e081aa;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #c32268;
+        }
+        
+        
+        
+        /* Customer Reviews */
+        .customer-reviews {
+            background-color: #5a0a2a;
+            padding: 60px 0;
+            margin: 60px 0;
+            color: white;
+        }
+        
+        .reviews-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .reviews-title {
+            text-align: center;
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .reviews-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #e081aa;
+        }
+        
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .review-card {
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid #e081aa;
+        }
+        
+        .review-author h4 {
+            color: white;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .review-author p {
+            color: #ec91b8;
+            font-size: 0.9rem;
+        }
+        
+        .review-stars {
+            color: #f1c40f;
+            margin-bottom: 15px;
+        }
+        
+        .review-text {
+            color: #ecf0f1;
+            font-style: italic;
+            line-height: 1.6;
+        }
+        
+        /* Features Section */
+        .dress-features {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .features-title {
+            text-align: center;
+            color: #5a0a2a;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .features-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #c32268;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: #f9f3f6;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #c32268;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            color: #5a0a2a;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .feature-card p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #5a0a2a;
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 150px;
+            height: 2px;
+            background-color: #ec91b8;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #e081aa;
+            padding-left: 5px;
+        }
+        
+        .newsletter input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 15px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: #e081aa;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #5a0a2a;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast i {
+            font-size: 20px;
+            color: #e081aa;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .banner-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title, .features-title, .reviews-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .banner-content h1 {
+                font-size: 2rem;
+            }
+            
+            .banner-content p {
+                font-size: 1rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .product-img {
+                height: 300px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+            }
+            
+            .search-bar {
+                order: 3;
+                flex: 0 0 100%;
+                margin: 15px 0 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .banner-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            #logo {
+                font-size: 1.5rem;
+            }
+            
+            .section-title, .features-title, .reviews-title {
+                font-size: 1.5rem;
+            }
+            
+            .section-title::after, .features-title::after, .reviews-title::after {
+                width: 60px;
+            }
+            
+            .nav-links a span {
+                display: none;
+            }
+            
+            .nav-links a i {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul>
+                <li id="logo">ZeeShoo!</li>
+                <li class="search-bar">
+                    <input type="text" placeholder="Search for dresses, outfits...">
+                </li>
+                <li class="nav-links">
+                    <a href="home.html"><i class="fas fa-home"></i> <span>Home</span></a>
+                    <a href="shop.html"><i class="fas fa-store"></i> <span>Shop</span></a>
+                    <a href="about2.html"><i class="fas fa-user"></i> <span>About</span></a>
+                    <a href="cart2.html"><i class="fas fa-shopping-cart"></i> <span>Cart</span></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message">Item added to cart!</span>
+    </div>
+
+    <!-- Page Banner -->
+    <div class="page-banner">
+        <div class="banner-content">
+            <h1>Modern Western Dresses</h1>
+            <p>Discover our curated collection of contemporary fashion that blends style with comfort for every occasion</p>
+            <a href="#shop" class="shop-now-btn">Shop Now</a>
+        </div>
+    </div>
+
+    <!-- Shop Content -->
+    <div class="shop-container" id="shop">
+        <div class="shop-header">
+            <h2 class="section-title">Featured Collection</h2>
+            <p class="section-subtitle">Handpicked selection of modern western dresses that combine elegance with contemporary design</p>
+        </div>
+        
+        <div class="product-grid">
+            <!-- Dress 1 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Black Evening Gown">
+                    <span class="product-badge">Bestseller</span>
+                    
+                </div>
+                <div class="product-info">
+                    <h3>Elegant Blue Gown</h3>
+                    <p>Floor-length evening gown with delicate lace detailing</p>
+                    <span class="price">₹1199</span>
+                    <button class="add-to-cart" onclick="addToCart('Elegant Blue Gown', 1199, 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Dress 2 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="White Summer Dress">
+                    <span class="product-badge">New Arrival</span>
+                 
+                </div>
+                <div class="product-info">
+                    <h3>Cotton Summer Dresses</h3>
+                    <p>Flowy cotton dress with ruffled sleeves and waist tie</p>
+                    <span class="price">Starts @ ₹489 <span class="old-price">₹599</span></span>
+                    <button class="add-to-cart" onclick="addToCart('Cotton Summer Dress', 489, 'https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Dress 3 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/4.jpg" alt="Red Cocktail Dress">
+                  
+                </div>
+                <div class="product-info">
+                    <h3>Red Cocktail Dress</h3>
+                    <p>Bodycon midi dress with ruched detailing</p>
+                    <span class="price">₹477</span><br>
+                    <button class="add-to-cart" onclick="addToCart('Red Cocktail Dress', 477, 'img/4.jpg')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Dress 4 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=734&q=80" alt="Denim Jumpsuit">
+                    <span class="product-badge">Sale</span>
+                   
+                </div>
+                <div class="product-info">
+                    <h3>Denim Jumpsuit</h3>
+                    <p>Classic denim jumpsuit with adjustable belt</p>
+                    <span class="price">₹666 <span class="old-price">₹799</span></span>
+                    <button class="add-to-cart" onclick="addToCart('Denim Jumpsuit', 666, 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=734&q=80')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Dress 5 -->
+          <!-- Dress 5 - FIXED: Changed to use a working image URL -->
+<div class="product-card">
+    <div class="product-img">
+        <img src="img/24.webp" alt="Trendy Maxi Dress">
+        <span class="product-badge">Exclusive</span>
+    </div>
+    <div class="product-info">
+        <h3>Trendy Maxi Dress</h3>
+        <p>Vintage-inspired print without sleeves</p>
+        <span class="price">₹599</span>
+        <button class="add-to-cart" onclick="addToCart('Trendy Maxi Dress', 599, 'img/24.webp')">Add to Cart</button>
+    </div>
+</div>
+            
+
+
+             
+            <!-- Dress 5 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/5.jpg" alt="Floral Maxi Dress">
+                    <span class="product-badge">Exclusive</span>
+                   
+                </div>
+                <div class="product-info">
+                    <h3>Trendy Maxi Dress</h3>
+                    <p>Vintage-inspired print without sleeves</p>
+                    <span class="price">₹599</span>
+                    <button class="add-to-cart" onclick="addToCart('Trendy Maxi Dress', 599, 'img/5.jpg')">Add to Cart</button>
+                </div>
+            </div>
+
+             
+            <!-- Dress 5 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/30.jpg" alt="Floral Maxi Dress">
+                    <span class="product-badge">Exclusive</span>
+                    
+                </div>
+                <div class="product-info">
+                    <h3>Maxi Jeans Set</h3>
+                    <p>Vintage-inspired jeans set with trendy blue theme </p>
+                    <span class="price">₹999</span>
+                    <button class="add-to-cart" onclick="addToCart('Maxi Jeans Dress', 999, 'img/30.jpg')">Add to Cart</button>
+                </div>
+            </div>
+
+             
+            <!-- Dress 5 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/32.webp" alt="Floral Maxi Dress">
+                    <span class="product-badge">Exclusive</span>
+                   
+                </div>
+                <div class="product-info">
+                    <h3>Floral Maxi Dress Set</h3>
+                    <p>Vintage-inspired floral print with puff sleeves</p>
+                    <span class="price">₹788</span><br>
+                    <button class="add-to-cart" onclick="addToCart('Floral Maxi Dress Set', 788, 'img/32.webp')">Add to Cart</button>
+                </div>
+            </div>
+            <!-- Dress 6 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/31.jpg" alt="Pink Wrap Dress">
+                    
+                </div>
+                <div class="product-info">
+                    <h3>Jean Wrap Dress</h3>
+                    <p>Flattering wrap silhouette with tie waist</p>
+                    <span class="price">₹619</span><br>
+                    <button class="add-to-cart" onclick="addToCart('Jeans Wrap Dress', 619, 'img/31.jpg')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Reviews -->
+    <div class="customer-reviews">
+        <div class="reviews-container">
+            <h2 class="reviews-title">What Our Customers Say</h2>
+            <div class="reviews-grid">
+                <!-- Review 1 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah J." class="review-avatar">
+                        <div class="review-author">
+                            <h4>Sarah J.</h4>
+                            <p>Verified Buyer</p>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"The black gown is absolutely stunning! The fit is perfect and the material is so luxurious. I received so many compliments at the gala I attended."</p>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Emily R." class="review-avatar">
+                        <div class="review-author">
+                            <h4>Emily R.</h4>
+                            <p>Verified Buyer</p>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="review-text">"I love my white summer dress! It's so comfortable and breezy for hot days. The quality exceeded my expectations for the price."</p>
+                </div>
+                
+                <!-- Review 3 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Michael T." class="review-avatar">
+                        <div class="review-author">
+                            <h4>Michael T.</h4>
+                            <p>Verified Buyer (Gift)</p>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"Bought the floral maxi dress for my wife's birthday. She loved it! The colors are vibrant and the fit was perfect. Delivery was fast too."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="dress-features">
+        <div class="features-container">
+            <h2 class="features-title">Why Choose Our Dresses</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>Premium Quality</h3>
+                    <p>Our dresses are crafted from high-quality fabrics that are durable, comfortable, and designed to last through many wears and washes.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-ruler-combined"></i>
+                    </div>
+                    <h3>Perfect Fit</h3>
+                    <p>We offer a range of sizes and styles to flatter every body type, with attention to detail in every stitch for the perfect fit.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Trending Styles</h3>
+                    <p>Our collection stays up-to-date with the latest fashion trends while maintaining timeless elegance for any occasion.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Eco-Friendly</h3>
+                    <p>We're committed to sustainable fashion, using eco-friendly materials and ethical production practices.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>ZeeShoo!</h3>
+                <p>Your destination for modern western fashion that combines style, comfort, and quality at affordable prices.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Bestsellers</a></li>
+                    <li><a href="#">Sale</a></li>
+                    <li><a href="#">Evening Wear</a></li>
+                    <li><a href="#">Casual Dresses</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-column newsletter">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get exclusive offers and style tips</p><br>
+                <input type="email" placeholder="Your email address"><br><br>
+                <button class="add-to-cart" style="border-radius: 15px; width: 50%;">Subscribe</button>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 ZeeShoo! All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Function to add items to cart
+        function addToCart(name, price, image) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Check if item already exists in cart
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    image: image,
+                    quantity: 1
+                });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Show toast notification
+            showToast(`${name} added to cart!`);
+            
+            // Update cart count in navigation
+            updateCartCount();
+        }
+        
+        // Function to show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            // Hide after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Function to update cart count in navigation
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            // Update cart count in navigation
+            const cartLinks = document.querySelectorAll('.nav-links a[href="cart2.html"]');
+            cartLinks.forEach(link => {
+                if (totalItems > 0) {
+                    link.innerHTML = `<i class="fas fa-shopping-cart"></i> <span>Cart (${totalItems})</span>`;
+                } else {
+                    link.innerHTML = '<i class="fas fa-shopping-cart"></i> <span>Cart</span>';
+                }
+            });
+        }
+        
+        // Initialize cart count on page load
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+    </script>
+</body>
+</html>

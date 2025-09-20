@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designer Blouses - ZeeShoo!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box; 
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f3f6;
+            color: #333;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #e081aa;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        #logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            font-style: italic;
+        }
+        
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 30px;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            max-width: 500px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .nav-links a:hover {
+            color: #5a0a2a;
+        }
+        
+        /* Page Banner */
+        .page-banner {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('img/34.webp');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .banner-content {
+            max-width: 800px;
+            padding: 0 20px;
+            animation: slideUp 1s ease-out;
+        }
+        
+        .banner-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .banner-content p {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        /* Shop Content */
+        .shop-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .shop-header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .section-title {
+            color: #5a0a2a;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: #e081aa;
+        }
+        
+        .section-subtitle {
+            color: #c32268;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .product-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .product-img {
+            height: 350px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #c32268;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 2;
+            animation: pulse 2s infinite;
+        }
+        
+        .product-info {
+            padding: 20px;
+            position: relative;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+            color: #5a0a2a;
+            transition: color 0.3s;
+        }
+        
+        .product-card:hover .product-info h3 {
+            color: #e081aa;
+        }
+        
+        .product-info p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .price {
+            color: #c32268;
+            font-weight: bold;
+            font-size: 1.3rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1rem;
+            margin-left: 8px;
+        }
+        
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 12px 0;
+            background-color: #e081aa;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #c32268;
+        }
+        
+        .add-to-cart::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        .add-to-cart:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+        
+        /* Blouse Features Section */
+        .blouse-features {
+            background-color: white;
+            padding: 70px 0;
+            margin: 70px 0;
+            border-top: 1px solid #f0d8e1;
+            border-bottom: 1px solid #f0d8e1;
+        }
+        
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .features-title {
+            text-align: center;
+            color: #5a0a2a;
+            font-size: 2rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .features-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #e081aa;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: #fff9fb;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .feature-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #e081aa;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            color: #c32268;
+            transform: rotate(15deg) scale(1.2);
+        }
+        
+        .feature-card h3 {
+            color: #5a0a2a;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            transition: color 0.3s;
+        }
+        
+        .feature-card:hover h3 {
+            color: #e081aa;
+        }
+        
+        .feature-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #5a0a2a;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #ec91b8;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #e081aa;
+            padding-left: 5px;
+        }
+        
+        .newsletter input {
+            width: 100%;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.95rem;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: #e081aa;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #ec91b8;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #5a0a2a;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast i {
+            font-size: 1.5rem;
+            color: #e081aa;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 1;
+            }
+            20% {
+                transform: scale(25, 25);
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(40, 40);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .banner-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .banner-content p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .banner-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            #logo {
+                font-size: 1.5rem;
+            }
+            
+            .nav-links a span {
+                display: none;
+            }
+            
+            .nav-links a i {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul>
+                <li id="logo">ZeeShoo!</li>
+                <li class="search-bar">
+                    <input type="text" placeholder="Search for blouses, tops...">
+                </li>
+                <li class="nav-links">
+                    <a href="home.html"><i class="fas fa-home"></i> <span>Home</span></a>
+                    <a href="shop.html"><i class="fas fa-store"></i> <span>Shop</span></a>
+                    <a href="about2.html"><i class="fas fa-user"></i> <span>About</span></a>
+                    <a href="cart2.html"><i class="fas fa-shopping-cart"></i> <span>Cart</span></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Banner -->
+    <div class="page-banner">
+        <div class="banner-content">
+            <h1>Designer Blouse Collection</h1>
+            <p>Elegant, stylish blouses for every occasion</p>
+        </div>
+    </div>
+
+    <!-- Shop Content -->
+    <div class="shop-container">
+        <div class="shop-header">
+            <h2 class="section-title">Featured Blouses</h2>
+            <p class="section-subtitle">Handcrafted with premium fabrics and attention to detail</p>
+        </div>
+        
+        <div class="product-grid">
+            <!-- Blouse 1 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/b8.webp" alt="Embroidered Silk Blouse">
+                    <span class="product-badge">New Arrival</span>
+                </div>
+                <div class="product-info">
+                    <h3>Embroidered Silk Blouse</h3>
+                    <p>Luxurious silk with intricate hand embroidery</p>
+                    <span class="price">₹489</span>
+                    <button class="add-to-cart" onclick="addToCart('Embroidered Silk Blouse', 489, 'img/b8.webp')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Blouse 2 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/b11.webp" alt="Floral Chiffon Blouse">
+                    <span class="product-badge">Bestseller</span>
+                </div>
+                <div class="product-info">
+                    <h3>Floral Chiffon Blouse</h3>
+                    <p>Lightweight chiffon with delicate floral print</p>
+                    <span class="price">₹499 <span class="old-price">₹589</span></span>
+                    <button class="add-to-cart" onclick="addToCart('Floral Chiffon Blouse', 499, 'img/b11.webp')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Blouse 3 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/b2.webp" alt="Lace Trim Cotton Blouse">
+                </div>
+                <div class="product-info">
+                    <h3>Lace Trim Cotton Blouse</h3>
+                    <p>Breathable cotton with elegant lace details</p>
+                    <span class="price">₹459</span>
+                    <button class="add-to-cart" onclick="addToCart('Lace Trim Cotton Blouse', 459, 'img/b2.webp')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Blouse 4 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/b1.jpg" alt="Georgette Pleated Blouse">
+                    <span class="product-badge">Sale</span>
+                </div>
+                <div class="product-info">
+                    <h3>Georgette Party Blouse</h3>
+                    <p>Flowy georgette with delicate pattern</p>
+                    <span class="price">₹699<span class="old-price">₹789</span></span>
+                    <button class="add-to-cart" onclick="addToCart('Georgette Party Blouse', 699, 'img/b1.jpg')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Blouse 5 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/b3.webp" alt="Velvet Evening Blouse">
+                </div>
+                <div class="product-info">
+                    <h3>Desining Party Blouse</h3>
+                    <p>Luxurious Blouse for special occasions</p>
+                    <span class="price">₹399</span>
+                    <button class="add-to-cart" onclick="addToCart('Desining Party Blouse', 399, 'img/b3.webp')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Blouse 6 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/b4.webp" alt="Organza Party Blouse">
+                    <span class="product-badge">Exclusive</span>
+                </div>
+                <div class="product-info">
+                    <h3>Organza Party Blouse</h3>
+                    <p>Sheer organza with sequin embellishments</p>
+                    <span class="price">₹579</span>
+                    <button class="add-to-cart" onclick="addToCart('Organza Party Blouse', 579, 'img/b4.webp')">Add to Cart</button>
+                </div>
+            </div>
+              <div class="product-card">
+                <div class="product-img">
+                    <img src="img/b7.webp" alt="Velvet Evening Blouse">
+                </div>
+                <div class="product-info">
+                    <h3>Velvet Pleated Blouse</h3>
+                    <p>Luxurious velvet for special occasions</p>
+                    <span class="price">₹687</span>
+                    <button class="add-to-cart" onclick="addToCart('Velvet Pleated Blouse', 687, 'img/b7.webp')">Add to Cart</button>
+                </div>
+            </div>
+            
+              <div class="product-card">
+                <div class="product-img">
+                    <img src="img/b5.webp" alt="Velvet Evening Blouse">
+                </div>
+                <div class="product-info">
+                    <h3>Velvet Navy Blouse</h3>
+                    <p>Luxurious velvet for special party</p>
+                    <span class="price">₹489</span>
+                    <button class="add-to-cart" onclick="addToCart('Velvet Navy Blouse', 489, 'img/b5.webp')">Add to Cart</button>
+                </div>
+            </div>
+            
+              <div class="product-card">
+                <div class="product-img">
+                    <img src="img/b6.webp" alt="Velvet Evening Blouse">
+                </div>
+                <div class="product-info">
+                    <h3>Georgette White Blouse</h3>
+                    <p>Luxurious Georgette for special occasions</p>
+                    <span class="price">₹679</span>
+                    <button class="add-to-cart" onclick="addToCart('Georgette White Blouse', 679, 'img/b6.webp')">Add to Cart</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Blouse Features Section -->
+    <div class="blouse-features">
+        <div class="features-container">
+            <h2 class="features-title">Why Our Blouses Stand Out</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>Premium Fabrics</h3>
+                    <p>We use only the highest quality silks, chiffons, and cottons for maximum comfort and durability.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hands"></i>
+                    </div>
+                    <h3>Handcrafted Details</h3>
+                    <p>Each blouse features hand-sewn embellishments and meticulous attention to detail.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-ruler-combined"></i>
+                    </div>
+                    <h3>Perfect Fit</h3>
+                    <p>Designed to flatter all body types with tailored cuts and adjustable features.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Vibrant Colors</h3>
+                    <p>Special dyeing techniques ensure colors stay bright and beautiful wash after wash.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message">Item added to cart!</span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>ZeeShoo!</h3>
+                <p>Your destination for elegant and stylish fashion. We bring you the latest trends at affordable prices.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Blouses</a></li>
+                    <li><a href="#">Dresses</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">Sale</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Help</h3>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Subscribe for exclusive offers and styling tips</p><br>
+                <input type="email" placeholder="Your email address" style="width: 100%; height: 18%; border-radius: 15px;"><br><br>
+                <button class="add-to-cart" style="border-radius: 15px; width: 50%;">Subscribe</button>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 ZeeShoo! All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Function to add items to cart
+        function addToCart(name, price, image) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Check if item already exists in cart
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    image: image,
+                    quantity: 1
+                });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Show toast notification
+            showToast(`${name} added to cart!`);
+            
+            // Update cart count in navigation
+            updateCartCount();
+        }
+        
+        // Function to show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            // Hide after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Function to update cart count in navigation
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            // Update cart count in navigation
+            const cartLinks = document.querySelectorAll('.nav-links a[href="cart2.html"]');
+            cartLinks.forEach(link => {
+                if (totalItems > 0) {
+                    link.innerHTML = `<i class="fas fa-shopping-cart"></i> <span>Cart (${totalItems})</span>`;
+                } else {
+                    link.innerHTML = '<i class="fas fa-shopping-cart"></i> <span>Cart</span>';
+                }
+            });
+        }
+        
+        // Function to check if element is in viewport
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.bottom >= 0
+            );
+        }
+        
+        // Function to handle scroll animations
+        function handleScrollAnimations() {
+            const productCards = document.querySelectorAll('.product-card');
+            const featureCards = document.querySelectorAll('.feature-card');
+            
+            productCards.forEach((card, index) => {
+                if (isInViewport(card)) {
+                    setTimeout(() => {
+                        card.classList.add('animate');
+                    }, index * 100);
+                }
+            });
+            
+            featureCards.forEach((card, index) => {
+                if (isInViewport(card)) {
+                    setTimeout(() => {
+                        card.classList.add('animate');
+                    }, index * 150);
+                }
+            });
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            handleScrollAnimations();
+            
+            // Add scroll event listener for animations
+            window.addEventListener('scroll', handleScrollAnimations);
+            
+            // Add ripple effect to buttons
+            const buttons = document.querySelectorAll('.add-to-cart');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Ripple effect is handled via CSS
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,570 @@
+<!-- <!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Login</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body {
+            background-image: url(img/img1.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            /* opacity: 0.9; */
+        }
+
+        .full {
+    
+            text-align: center;
+            border: 2px solid black;
+            border: none;
+            border-radius: 50px;
+            width: 800px;
+            height:260px;
+            padding: 20px;
+            padding-bottom: 95px;
+            background-color: white;
+            position: absolute;
+            left: 10%;
+            top: 1%;
+            bottom: 2%;
+            font-size: 18px;
+            font-style: italic;
+            /* opacity: 0.9;   */
+            margin-top: 100px;
+            margin-left: 120px;
+          /* background-image: url(img/img1.jpg); 
+          background-repeat: no-repeat;
+          background-size: cover; tranparent */
+        }
+
+        input {
+            /* opacity: 0.5; */
+            padding: 1px 30px;
+            border: none;
+            outline: none;
+            border-bottom: 2px solid black;
+        }
+
+        select {
+            /* opacity: 0.5; */
+            border: none;
+            border-bottom: 2px solid black;
+        }
+
+        button {
+            border: none;
+            border-radius: 50px;
+            padding: 10px 25px;
+            background-color: black;
+            color: white;
+        }
+
+        button:hover {
+            border: none;
+            background-color: #be526b;
+            padding: 10px 25px;
+            border-radius: 50px;
+            color: rgb(27, 25, 25);
+        }
+        form{
+            
+            border-radius: 30px;
+            background-image: url(img/img1.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    
+
+
+        @media screen and (max-width:768px) {
+            * {
+                padding: 0px;
+                margin: 0px;
+            }
+
+            body {
+                background-image: url(img/img1.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-size: 100% 620px;
+                /* opacity: 0.9; */
+                scrollbar-width: none;
+            }
+
+            .full {
+
+                text-align: center;
+                margin-left: -45px;
+                border: 2px solid black;
+                border: none;
+                border-radius: 50px;
+                width: 500px;
+                height: 480px;
+                padding: 19px;
+                padding-bottom: 110px;
+                background-color: white;
+                position: absolute;
+                left: 20%;
+                top: 1%;
+                bottom: 5%;
+                font-size: 18px;
+                /* opacity: 0.9; */
+            }
+
+            input {
+                /* opacity: 0.5; */
+                padding: 1px 30px;
+                border: none;
+                outline: none;
+                border-bottom: 2px solid black;
+            }
+
+            select {
+                /* opacity: 0.5; */
+                border: none;
+                border-bottom: 2px solid black;
+            }
+
+            button {
+                border: none;
+                border-radius: 50px;
+                padding: 12px 30px;
+                background-color: black;
+                color: white;
+                margin-top: 10px;
+
+            }
+
+            button:hover {
+                border: none;
+                background-color: #c98e3b;
+                padding: 10px 25px;
+                border-radius: 50px;
+                color: rgb(27, 25, 25);
+            }
+
+
+        }
+
+        @media screen and (max-width:425px) {
+            * {
+                padding: 0px;
+                margin: 0px;
+            }
+
+            body {
+                background-image: url(img/img1.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-size: 100% 620px;
+                /* opacity: 0.9; */
+                scrollbar-width: none;
+            }
+
+            .full {
+                margin-left: -6px;
+
+                border: 2px solid black;
+                border: none;
+                border-radius: 50px;
+                width: 95%;
+                height: 470px;
+                padding: 5px;
+                padding-bottom: 120px;
+                background-color: white;
+                position: absolute;
+                left: 3%;
+                top: 1%;
+                bottom: 3%;
+                font-size: 18px;
+                /* opacity: 0.9; */
+            }
+
+            input {
+                /* opacity: 0.5; */
+                padding: 1px 30px;
+                border: none;
+                outline: none;
+                border-bottom: 2px solid black;
+                margin-bottom:0 ;
+            }
+
+            .name {
+                margin-left: 20px;
+                padding-bottom: 15px;
+            }
+
+            select {
+                /* opacity: 0.5; */
+                border: none;
+                border-bottom: 2px solid black;
+            }
+            p {
+                display: none;
+
+            }
+
+            button {
+                border: none;
+                border-radius: 50px;
+                padding: 12px 30px;
+                background-color: black;
+                color: white;
+                margin-top: 40;
+             
+            }
+
+            button:hover {
+                border: none;
+                background-color: #c98e3b;
+                padding: 10px 25px;
+                border-radius: 50px;
+                color: rgb(27, 25, 25);
+            }
+        }
+
+
+
+        @media screen and (max-width:375px) {
+            * {
+                padding: 0px;
+                margin: 0px;
+            }
+
+            body {
+                background-image: url(img/img1.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-size: 100% 620px;
+                /* opacity: 0.9; */
+                scrollbar-width: none;
+            }
+
+            .full {
+                margin-left: -6px;
+
+                border: 2px solid black;
+                border: none;
+                border-radius: 50px;
+                width: 95%;
+                height: 470px;
+                padding: 5px;
+                padding-bottom: 130px;
+                background-color: white;
+                position: absolute;
+                left: 3%;
+                top: 1px;
+                bottom: 2%;
+                font-size: 18px;
+                /* opacity: 0.9; */
+            }
+
+            input {
+                /* opacity: 0.5; */
+                padding: 1px 30px;
+                border: none;
+                outline: none;
+                border-bottom: 2px solid black;
+              
+            }
+
+            .name {
+                margin-left: 20px;
+                padding-bottom: 10px;
+            }
+
+            .contact {
+                margin-left: 10px;
+
+            }
+
+            select {
+                /* opacity: 0.5; */
+                border: none;
+                border-bottom: 2px solid black;
+            }
+            hr{
+                display: none;
+            }
+
+            button {
+                border: none;
+                border-radius: 50px;
+                padding: 12px 30px;
+                background-color: black;
+                color: white;
+               margin-top: 0px;
+            }
+            button:hover {
+                border: none;
+                background-color: #c98e3b;
+                padding: 10px 25px;
+                border-radius: 50px;
+                color: rgb(27, 25, 25);
+            }
+        }
+
+
+        @media screen and (max-width:320px) {
+            * {
+                padding: 0px;
+                margin: 0px;
+            }
+
+            body {
+                background-image: url(img/img1.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-size: 100% 620px;
+                /* opacity: 0.9; */
+                scrollbar-width: none;
+            }
+
+            .full {
+                margin-left: -6px;
+
+                border: 2px solid black;
+                border: none;
+                border-radius: 50px;
+                width: 95%;
+                height: 470px;
+                padding: 5px;
+                padding-bottom: 130px;
+                background-color: white;
+                position: absolute;
+                left: 3%;
+                top: 2px;
+                bottom: 2%;
+                font-size: 18px;
+                /* opacity: 0.9; */
+            }
+           
+
+            input {
+
+                /* opacity: 0.5; */
+                border: none;
+                outline: none;
+                border-bottom: 2px solid black;
+               margin-bottom: 0;
+            }
+
+            .name {
+                margin-left: 5px;
+                padding-bottom: 8px;
+            }
+
+            .contact {
+                margin-left: 1px;
+
+            }
+
+            select {
+                /* opacity: 0.5; */
+                border: none;
+                border-bottom: 2px solid black;
+            }
+
+            p {
+                display: none;
+
+            }
+
+            button {
+                border: none;
+                border-radius: 50px;
+                padding: 12px 30px;
+                background-color: black;
+                color: white;
+                margin-top: 0px;
+            }
+            button:hover {
+                border: none;
+                background-color: #c98e3b;
+                padding: 10px 25px;
+                border-radius: 50px;
+                color: rgb(27, 25, 25);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="full">
+        <form>
+        <h1><b>LOGIN</b></h1><br><br>
+        <label>Name</label>
+        <input type="text" required> <br><br>
+        <label>Email</label>
+        <input type="text" id="" required><br><br>
+        <label>Contact No</label>
+        <input type="text" id="" required><br><br>
+        <label>City</label>
+        <input type="text" id="" required><br><br>
+        <label>State</label>
+        <select>
+            <option>Select</option>
+            <option>Asaam</option>
+            <option>Bihar</option>
+            <option>Delhi</option>
+            <option>Gujarat</option>
+            <option>TamilNaau</option>
+            <option>Kashmir</option>
+            <option>Kerala</option>
+        </select> <br><br>
+        <hr>
+        <a href="index1.html">
+            <button onclick="fun()">Continue...</button></a>
+
+        </form>
+    </div>
+    <script>
+        function fun(){
+        window.location="index1.html"
+        }
+        </script>
+ 
+</body>
+
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        /* Your original CSS remains exactly the same */
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body {
+            background-image: url(img/img1.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .full {
+            text-align: center;
+            border: 2px solid black;
+            border: none;
+            border-radius: 50px;
+            width: 800px;
+            height:260px;
+            padding: 20px;
+            padding-bottom: 95px;
+            background-color: white;
+            position: absolute;
+            left: 10%;
+            top: 1%;
+            bottom: 2%;
+            font-size: 18px;
+            font-style: italic;
+            margin-top: 100px;
+            margin-left: 120px;
+        }
+
+        input {
+            padding: 1px 30px;
+            border: none;
+            outline: none;
+            border-bottom: 2px solid black;
+        }
+
+        select {
+            border: none;
+            border-bottom: 2px solid black;
+        }
+
+        button {
+            border: none;
+            border-radius: 50px;
+            padding: 10px 25px;
+            background-color: black;
+            color: white;
+        }
+
+        button:hover {
+            border: none;
+            background-color: #be526b;
+            padding: 10px 25px;
+            border-radius: 50px;
+            color: rgb(27, 25, 25);
+        }
+        form{
+            border-radius: 30px;
+            background-image: url(img/img1.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Your original media queries remain exactly the same */
+        @media screen and (max-width:768px) {
+            /* ... */
+        }
+        @media screen and (max-width:425px) {
+            /* ... */
+        }
+        @media screen and (max-width:375px) {
+            /* ... */
+        }
+        @media screen and (max-width:320px) {
+            /* ... */
+        }
+    </style>
+</head>
+<body>
+    <div class="full">
+        <form id="loginForm">
+            <h1><b>LOGIN</b></h1><br><br>
+            <label>Name</label>
+            <input type="text" id="name" required> <br><br>
+            <label>Email</label>
+            <input type="email" id="email" required><br><br>
+            <label>Contact No</label>
+            <input type="number" id="contact" required><br><br>
+            <label>City</label>
+            <input type="text" id="city" required><br><br>
+            <label>State</label>
+            <select id="state" required>
+                <option value="">Select</option>
+                <option>Asaam</option>
+                <option>Bihar</option>
+                <option>Delhi</option>
+                <option>Gujarat</option>
+                <option>TamilNaau</option>
+                <option>Kashmir</option>
+                <option>Kerala</option>
+            </select> <br><br>
+            <hr>
+            <button type="submit">Continue...</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form from submitting normally
+            
+            // Get all form inputs
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const contact = document.getElementById('contact');
+            const city = document.getElementById('city');
+            const state = document.getElementById('state');
+            
+            // Check if all fields are filled
+            if (name.value && email.value && contact.value && city.value && state.value) {
+                // All fields are filled - redirect to next page
+                window.location.href = "index1.html";
+            } else {
+                // At least one field is empty - show alert
+                alert("Please fill in all fields before continuing.");
+            }
+        });
+    </script>
+</body>
+</html>

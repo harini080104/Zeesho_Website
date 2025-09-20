@@ -1,0 +1,224 @@
+/* 
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        ul {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 10px;
+        }
+        li{
+            list-style-type: none;
+
+        }
+        a{
+           text-decoration: none;
+        }
+        a:hover{
+            background-color: rgb(207, 87, 123); 
+            color: rgb(53, 8, 53);
+        }
+        header{
+            background-color: #e081aa;
+            padding: 10px;
+        }
+        #logo{
+            margin-right: 200px;
+        }
+        #dd1{
+            background-color:rgb(207, 166, 178);
+            justify-content: center;
+            padding: 20px;
+            padding-top: 50px;
+            height: 250px;
+            font-size: medium;
+        }
+        #d1{
+          
+display: flex;
+width:900px;
+margin-left: 300px;
+
+        }
+#selectdiv{
+    background-color: #e081aa;
+    height: 40px;
+    font-size: larger;
+    padding: 10px;
+    justify-content: center;
+    color: darkblue;
+
+
+}
+#largedivs{
+    margin-top: 10px;
+    
+}
+ */
+
+ * {
+    padding: 0px;
+    margin: 0px;
+}
+/* body{
+    background-color: #e081aa;
+} */
+ul {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+li {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    background-color: rgb(207, 87, 123); 
+    color: rgb(53, 8, 53);
+}
+header {
+    background-color: #e081aa;
+    padding-top: 10px;
+    padding: 20px;
+}
+#logo {
+    margin-right: 200px;
+}
+#dd1 {
+    background-color: rgb(207, 166, 178);
+    justify-content: center;
+    padding: 20px;
+    padding-top: 50px;
+    height: 250px;
+    font-size: medium;
+}
+#d1 {
+    display: flex;
+    width: 900px;
+    margin-left: 300px;
+}
+#selectdiv {
+    background-color: #e081aa;
+    height: 40px;
+    font-size: larger;
+    padding: 10px;
+    justify-content: center;
+    color: darkblue;
+}
+#largedivs {
+    margin-top: 10px;
+}
+
+/* New styles for the content section */
+.content-wrapper {
+    display: flex;
+    margin: 20px auto;
+    max-width: 1200px;
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.main-image {
+    flex: 1;
+}
+
+.main-image img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+}
+
+.vertical-frame {
+    width: 280px;
+    background-color: #e081aa;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.vertical-frame h3 {
+    color: darkblue;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgb(207, 87, 123);
+}
+
+.vertical-frame ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.vertical-frame li a {
+    display: block;
+    padding: 8px 12px;
+    color: darkblue;
+    transition: all 0.3s;
+}
+
+.vertical-frame li a:hover {
+    background-color: rgb(207, 87, 123);
+    color: white;
+    padding-left: 15px;
+}
+
+.vertical-frame i {
+    margin-right: 8px;
+    width: 20px;
+    text-align: center;
+    color: #c32268;
+}
+/* Add these to your existing styles */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+header {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+nav ul {
+    margin-top: 0; /* Remove the 10px margin that was creating space */
+    padding-top: 0;
+}
+
+/* Ensure no space before the marquee */
+#sec1 {
+    margin-top: 0;
+    padding-top: 0;
+}
+.dress{
+    margin-left: 45px;
+    font-size: larger;
+    font-style:inherit;
+    font-weight: bolder;
+    /* font-family: 'Times New Roman', Times, serif; */
+}
+#pic{
+border-radius: 5px;
+}
+.del
+{
+    font: optional;
+    font-size: medium;
+    margin-left: 20px;
+}
+.btn{
+    margin-left: 90px;
+    font-weight: bold;
+    font-style: initial;
+}
+#contains{
+    display: flex;
+    justify-content: space-evenly;
+margin: 20px solid black;
+background-color: rgb(247, 145, 172);
+padding-top: 20px;
+padding-bottom: 20px;
+}

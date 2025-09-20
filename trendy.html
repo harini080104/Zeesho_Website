@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trendy Collection - ZeeShoo!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box; 
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f3f6;
+            color: #333;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #e081aa;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        #logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            font-style: italic;
+        }
+        
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 30px;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            max-width: 500px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .nav-links a:hover {
+            color: #5a0a2a;
+        }
+        
+        /* Page Banner */
+        .page-banner {
+            background: linear-gradient(135deg, rgba(226, 129, 170, 0.8), rgba(195, 34, 104, 0.7)), 
+                        url('https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            position: relative;
+            animation: bannerFade 1.5s ease-in-out;
+        }
+        
+        @keyframes bannerFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .banner-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            animation: textSlideUp 1s ease-out 0.5s both;
+        }
+        
+        .banner-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            line-height: 1.6;
+            animation: textSlideUp 1s ease-out 0.8s both;
+        }
+        
+        @keyframes textSlideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .shop-now-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #c32268;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid #c32268;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .shop-now-btn:hover {
+            background-color: transparent;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            animation: none;
+        }
+        
+        /* Shop Content */
+        .shop-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .shop-header {
+            text-align: center;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.5s forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            color: #5a0a2a;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #c32268;
+        }
+        
+        .section-subtitle {
+            color: #c32268;
+            font-size: 1.2rem;
+            font-style: italic;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            opacity: 0;
+            animation: cardAppear 0.8s ease-out forwards;
+        }
+        
+        .product-card:nth-child(1) { animation-delay: 0.2s; }
+        .product-card:nth-child(2) { animation-delay: 0.4s; }
+        .product-card:nth-child(3) { animation-delay: 0.6s; }
+        .product-card:nth-child(4) { animation-delay: 0.8s; }
+        .product-card:nth-child(5) { animation-delay: 1.0s; }
+        .product-card:nth-child(6) { animation-delay: 1.2s; }
+        .product-card:nth-child(7) { animation-delay: 1.4s; }
+        .product-card:nth-child(8) { animation-delay: 1.6s; }
+        
+        @keyframes cardAppear {
+            from { opacity: 0; transform: translateY(30px) rotate(3deg); }
+            to { opacity: 1; transform: translateY(0) rotate(0); }
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .product-img {
+            height: 350px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #c32268;
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 2;
+            animation: badgePulse 2s infinite;
+        }
+        
+        @keyframes badgePulse {
+            0% { box-shadow: 0 0 0 0 rgba(195, 34, 104, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(195, 34, 104, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(195, 34, 104, 0); }
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            color: #5a0a2a;
+        }
+        
+        .product-info p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .price {
+            color: #c32268;
+            font-weight: bold;
+            font-size: 1.3rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1rem;
+            margin-left: 8px;
+        }
+        
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            background-color: #e081aa;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .add-to-cart::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .add-to-cart:hover::before {
+            left: 100%;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #c32268;
+        }
+        
+       
+        /* Customer Reviews */
+        .customer-reviews {
+            background-color: #5a0a2a;
+            padding: 60px 0;
+            margin: 60px 0;
+            color: white;
+        }
+        
+        .reviews-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .reviews-title {
+            text-align: center;
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .reviews-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #e081aa;
+        }
+        
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .review-card {
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .review-card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255,255,255,0.15);
+        }
+        
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid #e081aa;
+        }
+        
+        .review-author h4 {
+            color: white;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .review-author p {
+            color: #ec91b8;
+            font-size: 0.9rem;
+        }
+        
+        .review-stars {
+            color: #f1c40f;
+            margin-bottom: 15px;
+        }
+        
+        .review-text {
+            color: #ecf0f1;
+            font-style: italic;
+            line-height: 1.6;
+        }
+        
+        /* Features Section */
+        .dress-features {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .features-title {
+            text-align: center;
+            color: #5a0a2a;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .features-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #c32268;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: #f9f3f6;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #c32268;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+        
+        .feature-card h3 {
+            color: #5a0a2a;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .feature-card p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #5a0a2a;
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 150px;
+            height: 2px;
+            background-color: #ec91b8;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #e081aa;
+            padding-left: 5px;
+        }
+        
+        .newsletter input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 15px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: #e081aa;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #5a0a2a;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast i {
+            font-size: 20px;
+            color: #e081aa;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .banner-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title, .features-title, .reviews-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .banner-content h1 {
+                font-size: 2rem;
+            }
+            
+            .banner-content p {
+                font-size: 1rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .product-img {
+                height: 300px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+            }
+            
+            .search-bar {
+                order: 3;
+                flex: 0 0 100%;
+                margin: 15px 0 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .banner-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            #logo {
+                font-size: 1.5rem;
+            }
+            
+            .section-title, .features-title, .reviews-title {
+                font-size: 1.5rem;
+            }
+            
+            .section-title::after, .features-title::after, .reviews-title::after {
+                width: 60px;
+            }
+            
+            .nav-links a span {
+                display: none;
+            }
+            
+            .nav-links a i {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul>
+                <li id="logo">ZeeShoo!</li>
+                <li class="search-bar">
+                    <input type="text" placeholder="Search for trendy outfits...">
+                </li>
+                <li class="nav-links">
+                    <a href="home.html"><i class="fas fa-home"></i> <span>Home</span></a>
+                    <a href="shop.html"><i class="fas fa-store"></i> <span>Shop</span></a>
+                    <a href="about2.html"><i class="fas fa-user"></i> <span>About</span></a>
+                    <a href="cart2.html"><i class="fas fa-shopping-cart"></i> <span>Cart</span></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message">Item added to cart!</span>
+    </div>
+
+    <!-- Page Banner -->
+    <div class="page-banner">
+        <div class="banner-content">
+            <h1>Trendy Collection</h1>
+            <p>Discover the latest fashion trends that will make you stand out from the crowd</p>
+            <a href="#shop" class="shop-now-btn">Shop Now</a>
+        </div>
+    </div>
+
+    <!-- Shop Content -->
+    <div class="shop-container" id="shop">
+        <div class="shop-header">
+            <h2 class="section-title">Trending Now</h2>
+            <p class="section-subtitle">The hottest styles of the season that combine fashion-forward design with comfort</p>
+        </div>
+        
+        <div class="product-grid">
+            <!-- Item 1 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/t3.avif" alt="Trendy Jumpsuit">
+                    <span class="product-badge">Trending</span>
+                    
+                </div>
+                <div class="product-info">
+                    <h3>Designer Jumpsuit</h3>
+                    <p>Chic and comfortable jumpsuit with statement sleeves</p>
+                    <span class="price">₹569</span>
+                    <button class="add-to-cart" onclick="addToCart('Designer Jumpsuit', 569, 'img/t3.avif')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Item 2 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/t1.avif" alt="Leather Jacket">
+                    <span class="product-badge">Bestseller</span>
+      
+                </div>
+                <div class="product-info">
+                    <h3>Faux Crop Top</h3>
+                    <p>Edgy vegan crop top with asymmetric zipper styled pattern</p>
+                    <span class="price">₹459 <span class="old-price">₹549</span></span>
+                    <button class="add-to-cart" onclick="addToCart('Faux Crop Top', 459, 'img/t1.avif')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Item 3 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/tt5.avif" alt="Oversized Blazer">
+ 
+                </div>
+                <div class="product-info">
+                    <h3>Oversized Blazer</h3>
+                    <p>Structured blazer with shoulder pads for a power look</p>
+                    <span class="price">₹349</span>
+                    <button class="add-to-cart" onclick="addToCart('Oversized Blazer', 349, 'img/tt5.avif')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Item 4 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1618932260643-eee4a2f652a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1380&q=80" alt="Wide Leg Pants">
+                    <span class="product-badge">New</span>
+                    
+                </div>
+                <div class="product-info">
+                    <h3>High-waisted Top</h3>
+                    <p>High-waisted tops with flowing silhouette</p>
+                    <span class="price">₹329 <span class="old-price">₹399</span></span><br>
+                    <button class="add-to-cart" onclick="addToCart('High-waisted Top', 329, 'https://images.unsplash.com/photo-1618932260643-eee4a2f652a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1380&q=80')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Item 5 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/t6.avif" alt="Statement Sleeve Top">
+                    <span class="product-badge">Exclusive</span>
+
+                </div>
+                <div class="product-info">
+                    <h3>Statement Sleeve Top</h3>
+                    <p>Dramatic puff sleeve blouse with ruffled details</p>
+                    <span class="price">₹419</span><br>
+                    <button class="add-to-cart" onclick="addToCart('Statement Sleeve Top', 419, 'img/t6.avif')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Item 6 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/t8.avif" alt="Midi Skirt">
+                  
+                </div>
+                <div class="product-info">
+                    <h3>Cotton Floral Set</h3>
+                    <p>Elegant floral top with delicate white pant and satin finish</p>
+                    <span class="price">₹539</span>
+                    <button class="add-to-cart" onclick="addToCart('Cotton Floral Set', 539, 'img/t8.avif')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Item 7 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1582418702059-97ebafb35d09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=715&q=80" alt="Bodycon Dress">
+                    <span class="product-badge">Sale</span>
+                    
+                </div>
+                <div class="product-info">
+                    <h3>Bodycon Dress Set</h3>
+                    <p>Form-fitting dress along T-Shirt and Jeans pant </p>
+                    <span class="price">₹848<span class="old-price">₹939</span></span><br>
+                    <button class="add-to-cart" onclick="addToCart('Bodycon Dress Set', 848, 'https://images.unsplash.com/photo-1582418702059-97ebafb35d09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=715&q=80')">Add to Cart</button>
+                </div>
+            </div>
+
+             <!-- Item 8 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/ss3.avif" alt="Bodycon Dress">
+                    <span class="product-badge">Sale</span>
+                    
+                </div>
+                <div class="product-info">
+                    <h3>Knitted Bodycon Dress</h3>
+                    <p>Form-fitting dress with ribbed texture and turtleneck</p>
+                    <span class="price">₹579 <span class="old-price">₹677</span></span>
+                    <button class="add-to-cart" onclick="addToCart('Knitted Bodycon Dress', 579, 'img/ss3.avif')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Item 9 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/t5.avif" alt="Crop Top Set">
+                    <span class="product-badge">Popular</span>
+                    
+                </div>
+                <div class="product-info">
+                    <h3>Coordinated Set</h3>
+                    <p>Matching crop top and plazo pant set with floral pattern</p>
+                    <span class="price">₹1199</span>
+                    <button class="add-to-cart" onclick="addToCart('Coordinated Set', 1199, 'img/t5.avif')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Reviews -->
+    <div class="customer-reviews">
+        <div class="reviews-container">
+            <h2 class="reviews-title">Style Inspirations</h2>
+            <div class="reviews-grid">
+                <!-- Review 1 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Jessica L." class="review-avatar">
+                        <div class="review-author">
+                            <h4>Jessica L.</h4>
+                            <p>Fashion Blogger</p>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"The trendy jumpsuit is my new favorite piece! It's so versatile - I've dressed it up for events and down for casual outings. The fabric is amazing quality."</p>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sophia M." class="review-avatar">
+                        <div class="review-author">
+                            <h4>Sophia M.</h4>
+                            <p>Verified Buyer</p>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="review-text">"The oversized blazer is everything I hoped for! It's perfectly structured and goes with everything in my wardrobe. I get compliments every time I wear it."</p>
+                </div>
+                
+                <!-- Review 3 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Amanda K." class="review-avatar">
+                        <div class="review-author">
+                            <h4>Amanda K.</h4>
+                            <p>Verified Buyer</p>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"The wide leg pants are incredibly flattering and so comfortable. The material is high quality and they drape beautifully. Worth every penny!"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="dress-features">
+        <div class="features-container">
+            <h2 class="features-title">Why Our Trendy Collection</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3>On-Trend Designs</h3>
+                    <p>Our collection is constantly updated with the latest runway trends and street style influences to keep you fashion-forward.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>Quality Materials</h3>
+                    <p>We use premium fabrics that not only look great but feel comfortable and maintain their shape wear after wear.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Global Inspiration</h3>
+                    <p>Our designs draw inspiration from fashion capitals around the world, bringing international style to your wardrobe.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Style Confidence</h3>
+                    <p>Our pieces are designed to make you feel confident and empowered, expressing your unique personality.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>ZeeShoo!</h3>
+                <p>Your destination for trendy fashion that combines style, comfort, and quality at affordable prices.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Trending Now</a></li>
+                    <li><a href="#">Sale</a></li>
+                    <li><a href="#">Complete Looks</a></li>
+                    <li><a href="#">Accessories</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Style Guide</h3>
+                <ul>
+                    <li><a href="#">How to Wear Trends</a></li>
+                    <li><a href="#">Seasonal Looks</a></li>
+                    <li><a href="#">Style Blog</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Style Consultation</a></li>
+                </ul>
+            </div>
+            <div class="footer-column newsletter">
+                <h3>Get Trend Updates</h3>
+                <p>Subscribe to get exclusive style tips and early access to new collections</p><br>
+                <input type="email" placeholder="Your email address"><br><br>
+                <button class="add-to-cart" style="border-radius: 15px; width: 50%;">Subscribe</button>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 ZeeShoo! All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Function to add items to cart
+        function addToCart(name, price, image) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Check if item already exists in cart
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    image: image,
+                    quantity: 1
+                });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Show toast notification
+            showToast(`${name} added to cart!`);
+            
+            // Update cart count in navigation
+            updateCartCount();
+        }
+        
+        // Function to show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            // Hide after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Function to update cart count in navigation
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            // Update cart count in navigation
+            const cartLinks = document.querySelectorAll('.nav-links a[href="cart2.html"]');
+            cartLinks.forEach(link => {
+                if (totalItems > 0) {
+                    link.innerHTML = `<i class="fas fa-shopping-cart"></i> <span>Cart (${totalItems})</span>`;
+                } else {
+                    link.innerHTML = '<i class="fas fa-shopping-cart"></i> <span>Cart</span>';
+                }
+            });
+        }
+        
+        // Initialize cart count on page load
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+        
+        // Add scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.product-card, .feature-card, .review-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animatedElements.forEach(element => {
+                element.style.animationPlayState = 'paused';
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

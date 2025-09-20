@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silk Elegance - ZeeShoo!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #faf5f0;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #e081aa;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 10px 0;
+            background-color: rgba(224, 129, 170, 0.95);
+            backdrop-filter: blur(5px);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        #logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+        
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 30px;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            max-width: 500px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .search-bar input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #5a0a2a;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        
+        /* Silk Hero Section */
+        .silk-hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('img/silk-bg.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .silk-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('img/silk-pattern.png') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        
+        .hero-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #e081aa;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .hero-btn:hover {
+            background-color: #5a0a2a;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        /* Silk Collection Section */
+        .silk-collection {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #5a0a2a;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: #e081aa;
+        }
+        
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .silk-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .silk-item.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .silk-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .silk-img {
+            height: 350px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .silk-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .silk-item:hover .silk-img img {
+            transform: scale(1.05);
+        }
+        
+        .silk-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #5a0a2a;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .silk-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .silk-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .silk-info p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .silk-price {
+            font-size: 1.2rem;
+            color: #c32268;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .silk-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: #e081aa;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .silk-btn:hover {
+            background-color: #5a0a2a;
+        }
+        
+        /* Silk Features Section */
+        .silk-features {
+            background-color: #5a0a2a;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-item {
+            padding: 30px;
+            border-radius: 10px;
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .feature-item.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .feature-item:hover {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #e081aa;
+        }
+        
+        .feature-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .feature-item p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        /* Silk Gallery Section */
+        .silk-gallery {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 300px);
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+        }
+        
+        /* Half Saree Section */
+        .half-saree-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .half-saree-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .half-saree-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+        }
+        
+        .half-saree-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .half-saree-img {
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .half-saree-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .half-saree-item:hover .half-saree-img img {
+            transform: scale(1.05);
+        }
+        
+        .half-saree-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .half-saree-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .half-saree-price {
+            font-size: 1.2rem;
+            color: #c32268;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .half-saree-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: #e081aa;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .half-saree-btn:hover {
+            background-color: #5a0a2a;
+        }
+        
+        /* Silk Testimonials */
+        .silk-testimonials {
+            background-color: #f9f3f6;
+            padding: 80px 20px;
+        }
+        
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 30px;
+            padding-bottom: 20px;
+            scrollbar-width: none; /* Firefox */
+        }
+        
+        .testimonial-slider::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+        
+        .testimonial {
+            min-width: 300px;
+            scroll-snap-align: start;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #5a0a2a;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-column h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: #e081aa;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #e081aa;
+            padding-left: 5px;
+        }
+        
+        .newsletter input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .newsletter button {
+            background-color: #e081aa;
+            color: white;
+            border: 30px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .newsletter button:hover {
+            background-color: #c32268;
+            border-radius: 15px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: #e081aa;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #5a0a2a;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast i {
+            font-size: 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 250px);
+            }
+            
+            .half-saree-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                margin: 15px 0;
+                width: 100%;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: space-around;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(6, 200px);
+            }
+            
+            .half-saree-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <nav>
+            <ul>
+                <li id="logo">ZeeShoo!</li>
+                <li class="search-bar">
+                    <input type="text" placeholder="Search for silk sarees, dresses...">
+                </li>
+                <li class="nav-links">
+                    <a href="home.html"><i class="fas fa-home"></i> Home</a>
+                    <a href="shop.html"><i class="fas fa-store"></i> Shop</a>
+                    <a href="about2.html"><i class="fas fa-user"></i> About</a>
+                    <a href="cart2.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message">Item added to cart!</span>
+    </div>
+
+    <!-- Silk Hero Section -->
+    <section class="silk-hero">
+        <div class="hero-content">
+            <h1>Luxurious Silk Collection</h1>
+            <p>Experience the timeless elegance of our handcrafted silk creations, woven with tradition and designed for modern royalty.</p>
+            <a href="#collection" class="hero-btn floating">Explore Collection</a>
+        </div>
+    </section>
+
+    <!-- Silk Collection Section -->
+    <section class="silk-collection" id="collection">
+        <h2 class="section-title">Our Silk Treasures</h2>
+        
+        <div class="collection-grid">
+            <div class="silk-item">
+                <div class="silk-img">
+                    <img src="img/s9.avif" alt="Banarasi Silk Saree">
+                    <span class="silk-badge">Bestseller</span>
+                </div>
+                <div class="silk-info">
+                    <h3>Banarasi Silk Saree</h3>
+                    <p>Handwoven with pure zari work, this traditional masterpiece shines with royal elegance.</p>
+                    <div class="silk-price">₹1299</div>
+                    <a href="#" class="silk-btn" onclick="addToCart('Banarasi Silk Saree', 1299, 'img/s9.avif')">Add to Cart</a>
+                </div>
+            </div>
+            
+            <div class="silk-item">
+                <div class="silk-img">
+                    <img src="img/s10.avif" alt="Kanjivaram Silk">
+                    <span class="silk-badge">New Arrival</span>
+                </div>
+                <div class="silk-info">
+                    <h3>Kanjivaram Silk</h3>
+                    <p>Vibrant colors and intricate patterns make this South Indian classic truly special.</p>
+                    <div class="silk-price">₹2899</div>
+                    <a href="#" class="silk-btn" onclick="addToCart('Kanjivaram Silk', 2899, 'img/s10.avif')">Add to Cart</a>
+                </div>
+            </div>
+            
+            <div class="silk-item">
+                <div class="silk-img">
+                    <img src="img/silk.webp" alt="Tussar Silk Dress">
+                </div>
+                <div class="silk-info">
+                    <h3>Tussar Silk Dress</h3>
+                    <p>Contemporary design meets traditional fabric in this elegant fusion wear.</p>
+                    <div class="silk-price">₹1199</div>
+                    <a href="#" class="silk-btn" onclick="addToCart('Tussar Silk Dress', 1199, 'img/silk.webp')">Add to Cart</a>
+                </div>
+            </div>
+            
+            <div class="silk-item">
+                <div class="silk-img">
+                    <img src="img/s11.avif" alt="Chanderi Silk Suit">
+                    <span class="silk-badge">Limited Edition</span>
+                </div>
+                <div class="silk-info">
+                    <h3>Chanderi Silk Suit</h3>
+                    <p>Lightweight yet luxurious, perfect for daytime elegance and comfort.</p>
+                    <div class="silk-price">₹1349</div>
+                    <a href="#" class="silk-btn" onclick="addToCart('Chanderi Silk Suit', 1349, 'img/s11.avif')">Add to Cart</a>
+                </div>
+            </div>
+            
+            <div class="silk-item">
+                <div class="silk-img">
+                    <img src="img/17.jpg" alt="Muga Silk Shawl">
+                </div>
+                <div class="silk-info">
+                    <h3>Muga Silk Shawl</h3>
+                    <p>The golden shimmer of Assam's pride, handcrafted with traditional motifs.</p>
+                    <div class="silk-price">₹1899</div>
+                    <a href="#" class="silk-btn" onclick="addToCart('Muga Silk Shawl', 1899, 'img/17.jpg')">Add to Cart</a>
+                </div>
+            </div>
+            
+            <div class="silk-item">
+                <div class="silk-img">
+                    <img src="img/16.jpg" alt="Silk Blend Lehenga">
+                    <span class="silk-badge">Exclusive</span>
+                </div>
+                <div class="silk-info">
+                    <h3>Silk Blend Lehenga</h3>
+                    <p>Grand and glamorous, perfect for weddings and special occasions.</p>
+                    <div class="silk-price">₹3999</div>
+                    <a href="#" class="silk-btn" onclick="addToCart('Silk Blend Lehenga', 3999, 'img/16.jpg')">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Silk Features Section -->
+    <section class="silk-features">
+        <div class="features-container">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-hand-sparkles"></i>
+                </div>
+                <h3>Handcrafted Excellence</h3>
+                <p>Each piece is meticulously handwoven by skilled artisans with generations of expertise.</p>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3>Pure Natural Silk</h3>
+                <p>We use only the finest natural silk fibers for unmatched softness and sheen.</p>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h3>Eco-Friendly Dyes</h3>
+                <p>Vibrant colors achieved through traditional, environmentally-safe dyeing techniques.</p>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <h3>Authentic Heritage</h3>
+                <p>Preserving ancient weaving techniques while incorporating contemporary designs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Silk Gallery Section -->
+    <section class="silk-gallery">
+        <h2 class="section-title">Silk in Motion</h2>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="img/s8.avif" alt="Silk Weaving">
+                <div class="gallery-caption">
+                    <h3>Artisan at Work</h3>
+                    <p>Traditional handloom weaving in Varanasi</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="img/8.jpg" alt="Silk Dyeing">
+                <div class="gallery-caption">
+                    <h3>Natural Dyeing</h3>
+                    <p>Preparing colors from organic sources</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="img/s12.avif" alt="Silk Embroidery">
+                <div class="gallery-caption">
+                    <h3>Intricate Embroidery</h3>
+                    <p>Hand-stitched zari work details</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="img/s7.avif" alt="Silk Fashion">
+                <div class="gallery-caption">
+                    <h3>Modern Silhouettes</h3>
+                    <p>Contemporary designs with traditional fabric</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="img/s5.avif" alt="Silk Textures">
+                <div class="gallery-caption">
+                    <h3>Texture Play</h3>
+                    <p>The luxurious drape of pure silk</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="img/s6.avif" alt="Silk Accessories">
+                <div class="gallery-caption">
+                    <h3>Silk Accessories</h3>
+                    <p>Complement your look with matching pieces</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Half Saree Section -->
+    <section class="half-saree-section">
+        <h2 class="section-title">Trendy Half Sarees</h2>
+        
+        <div class="half-saree-grid">
+            <div class="half-saree-item">
+                <div class="half-saree-img">
+                    <img src="img/11.jpg" alt="Floral Half Saree">
+                </div>
+                <div class="half-saree-info">
+                    <h3>Floral Half Saree</h3>
+                    <div class="half-saree-price">₹2899</div>
+                    <a href="#" class="half-saree-btn" onclick="addToCart('Floral Half Saree', 2899, 'img/11.jpg')">Add to Cart</a>
+                </div>
+            </div>
+            
+            <div class="half-saree-item">
+                <div class="half-saree-img">
+                    <img src="img/12.jpg" alt="Zari Half Saree">
+                </div>
+                <div class="half-saree-info">
+                    <h3>Zari Half Saree</h3>
+                    <div class="half-saree-price">₹3599</div>
+                    <a href="#" class="half-saree-btn" onclick="addToCart('Zari Half Saree', 3599, 'img/12.jpg')">Add to Cart</a>
+                </div>
+            </div>
+            
+            <div class="half-saree-item">
+                <div class="half-saree-img">
+                    <img src="img/13.jpg" alt="Silk Cotton Half Saree">
+                </div>
+                <div class="half-saree-info">
+                    <h3>Silk Cotton Half Saree</h3>
+                    <div class="half-saree-price">₹2399</div>
+                    <a href="#" class="half-saree-btn" onclick="addToCart('Silk Cotton Half Saree', 2399, 'img/13.jpg')">Add to Cart</a>
+                </div>
+            </div>
+            
+            <div class="half-saree-item">
+                <div class="half-saree-img">
+                    <img src="img/s14.avif" alt="Traditional Half Saree">
+                </div>
+                <div class="half-saree-info">
+                    <h3>Traditional Half Saree</h3>
+                    <div class="half-saree-price">₹2799</div>
+                    <a href="#" class="half-saree-btn" onclick="addToCart('Traditional Half Saree', 2799, 'img/s14.avif')">Add to Cart</a>
+                </div>
+            </div>
+            
+            <div class="half-saree-item">
+                <div class="half-saree-img">
+                    <img src="img/s13.avif" alt="Designer Half Saree">
+                </div>
+                <div class="half-saree-info">
+                    <h3>Designer Half Saree</h3>
+                    <div class="half-saree-price">₹3499</div>
+                    <a href="#" class="half-saree-btn" onclick="addToCart('Designer Half Saree', 3499, 'img/s13.avif')">Add to Cart</a>
+                </div>
+            </div>
+            
+            <div class="half-saree-item">
+                <div class="half-saree-img">
+                    <img src="img/s15.avif" alt="Bridal Half Saree">
+                </div>
+                <div class="half-saree-info">
+                    <h3>Bridal Half Saree</h3>
+                    <div class="half-saree-price">₹4999</div>
+                    <a href="#" class="half-saree-btn" onclick="addToCart('Bridal Half Saree', 4999, 'img/s15.avif')">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Silk Testimonials -->
+    <section class="silk-testimonials">
+        <div class="testimonials-container">
+            <h2 class="section-title">What Our Clients Say</h2>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <p class="testimonial-text">"The Banarasi silk saree I purchased is absolutely breathtaking. The craftsmanship is impeccable and the fabric feels so luxurious. I received countless compliments at my sister's wedding!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="img/silk4.jpg" alt="Priya K.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Priya K.</h4>
+                            <p>New Delhi</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-text">"As someone who values sustainable fashion, I appreciate that ZeeShoo uses eco-friendly dyes. My Kanjivaram silk has maintained its vibrant color even after multiple wears and washes."</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="img/silk5.jpg" alt="Ananya R.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Ananya R.</h4>
+                            <p>Bangalore</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-text">"The silk blend lehenga was perfect for my wedding reception. The quality exceeded my expectations and the intricate zari work was even more beautiful in person than in the photos."</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="img/s8.avif" alt="Neha S.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Neha S.</h4>
+                            <p>Mumbai</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-text">"I've purchased silk from many stores, but ZeeShoo's collection stands out for its authenticity and fair pricing. The customer service was exceptional when I needed help with sizing."</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="img/silk6.jpg" alt="Riya M.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Riya M.</h4>
+                            <p>Chennai</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>ZeeShoo!</h3>
+                <p>Bringing you the finest silk creations that celebrate India's rich textile heritage with contemporary elegance.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Silk Collections</h3>
+                <ul>
+                    <li><a href="#">Banarasi Silk</a></li>
+                    <li><a href="#">Kanjivaram Silk</a></li>
+                    <li><a href="#">Tussar Silk</a></li>
+                    <li><a href="#">Chanderi Silk</a></li>
+                    <li><a href="#">Muga Silk</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Care</h3>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Return Policy</a></li>
+                    <li><a href="#">Silk Care Guide</a></li>
+                </ul>
+            </div>
+            <div class="footer-column newsletter">
+                <h3>Join Our Community</h3>
+                <p>Subscribe for exclusive offers, styling tips, and first access to new collections.</p><br>
+                <input type="email" placeholder="Your email address"><br><br>
+                <button>Subscribe</button>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 ZeeShoo! All Rights Reserved | Handcrafted with love in India</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Animate elements when they come into view
+        function animateOnScroll() {
+            const items = document.querySelectorAll('.silk-item, .feature-item, .half-saree-item');
+            
+            items.forEach(item => {
+                const itemPosition = item.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (itemPosition < screenPosition) {
+                    item.classList.add('animated');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+        
+        // Add to cart function
+        function addToCart(name, price, image) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    image: image,
+                    quantity: 1
+                });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Show toast notification
+            showToast(`${name} added to cart!`);
+            
+            // Update cart count in navigation
+            updateCartCount();
+        }
+        
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            // Hide after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Update cart count in navigation
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            // Update cart count in navigation
+            const cartLinks = document.querySelectorAll('.nav-links a[href="cart2.html"]');
+            cartLinks.forEach(link => {
+                if (totalItems > 0) {
+                    link.innerHTML = `<i class="fas fa-shopping-cart"></i> Cart (${totalItems})`;
+                } else {
+                    link.innerHTML = '<i class="fas fa-shopping-cart"></i> Cart';
+                }
+            });
+        }
+        
+        // Initialize cart count on page load
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+    </script>
+</body>
+</html>

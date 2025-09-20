@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeeShoo - Create Account</title>
+    <script src="js/main.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f3f6;
+            color: #333;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #e081aa;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        #logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            font-style: italic;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .nav-links a:hover {
+            color: #5a0a2a;
+        }
+        
+        /* Login Container */
+        .login-container {
+            max-width: 1000px;
+            margin: 50px auto;
+            display: flex;
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .login-image {
+            flex: 1;
+            background-image: linear-gradient(rgba(224, 129, 170, 0.7), rgba(224, 129, 170, 0.7)), url('https://images.unsplash.com/photo-1525507119028-ed4c629a60a3');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            color: white;
+            text-align: center;
+        }
+        
+        .login-image h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .login-image p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .login-form {
+            flex: 1;
+            padding: 50px;
+        }
+        
+        .login-form h2 {
+            color: #c32268;
+            margin-bottom: 30px;
+            font-size: 28px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #5a0a2a;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            border-color: #e081aa;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(224, 129, 170, 0.2);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 14px;
+            background-color: #c32268;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background-color: #9e1a52;
+            transform: translateY(-2px);
+        }
+        
+        .login-options {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .login-options p {
+            color: #666;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .login-options p::before, .login-options p::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background-color: #ddd;
+        }
+        
+        .login-options p::before {
+            left: 0;
+        }
+        
+        .login-options p::after {
+            right: 0;
+        }
+        
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #f0e6eb;
+            color: #5a0a2a;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+        
+        .social-btn:hover {
+            background-color: #e081aa;
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .login-footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+        }
+        
+        .login-footer a {
+            color: #c32268;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Error styling */
+        .error {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        input.invalid, select.invalid {
+            border-color: #e74c3c;
+        }
+        
+        input.valid, select.valid {
+            border-color: #2ecc71;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #5a0a2a;
+            color: white;
+            padding: 30px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-column h3 {
+            color:white;
+            margin-bottom: 20px;
+            font-size: 18px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 150px;
+            height: 2px;
+            background-color: #ec91b8;
+        }
+        .footer-column li a{
+            color: #ddd;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul>
+                <li id="logo">ZeeShoo!</li>
+                <li class="nav-links">
+                    <a href="home.html"><i class="fas fa-home"></i> Home</a>
+                    <a href="shop.html"><i class="fas fa-store"></i> Shop</a>
+                    <a href="about2.html"><i class="fas fa-user"></i> Account</a>
+                    <a href="cart2.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Login Container -->
+    <div class="login-container">
+        <div class="login-image">
+            <div>
+                <h2>Welcome to ZeeShoo!</h2>
+                <p>Join our fashion community and get access to exclusive offers, personalized recommendations, and faster checkout.</p>
+                <img src="https://cdn-icons-png.flaticon.com/512/477/477103.png" alt="Fashion Illustration" width="200">
+            </div>
+        </div>
+        <div class="login-form">
+            <h2>Create Account</h2>
+            <form id="registrationForm" action="welcome.html" method="post">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                        <div class="error" id="firstNameError">Please enter your first name</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                        <div class="error" id="lastNameError">Please enter your last name</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error" id="emailError">Please enter a valid email address</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                    <div class="error" id="phoneError">Please enter a valid phone number</div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city" required>
+                        <div class="error" id="cityError">Please enter your city</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <select id="state" name="state" required>
+                            <option value="">Select State</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="ME">Maine</option>
+                            <option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MI">Michigan</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NY">New York</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VT">Vermont</option>
+                            <option value="VA">Virginia</option>
+                            <option value="WA">Washington</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WY">Wyoming</option>
+                        </select>
+                        <div class="error" id="stateError">Please select your state</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <div class="error" id="passwordError">Password must be at least 6 characters</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <div class="error" id="confirmPasswordError">Passwords do not match</div>
+                </div>
+                
+                <button type="submit" class="btn">Create Account</button>
+            </form>
+            
+            <div class="login-options">
+                <p>or sign up with</p>
+                <div class="social-login">
+                    <a href="#" class="social-btn"><i class="fab fa-google"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-apple"></i></a>
+                </div>
+            </div>
+            
+            <div class="login-footer">
+                Already have an account? <a href="login2.html">Sign in</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>ZeeShoo!</h3>
+                <p>Your one-stop destination for trendy and elegant fashion.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 ZeeShoo! All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Reset error states
+            document.querySelectorAll('.error').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('input, select').forEach(el => el.classList.remove('invalid', 'valid'));
+            
+            // Validate fields
+            let isValid = true;
+            
+            // First Name
+            const firstName = document.getElementById('firstName');
+            if (!firstName.value.trim()) {
+                document.getElementById('firstNameError').style.display = 'block';
+                firstName.classList.add('invalid');
+                isValid = false;
+            } else {
+                firstName.classList.add('valid');
+            }
+            
+            // Last Name
+            const lastName = document.getElementById('lastName');
+            if (!lastName.value.trim()) {
+                document.getElementById('lastNameError').style.display = 'block';
+                lastName.classList.add('invalid');
+                isValid = false;
+            } else {
+                lastName.classList.add('valid');
+            }
+            
+            // Email
+            const email = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                document.getElementById('emailError').style.display = 'block';
+                email.classList.add('invalid');
+                isValid = false;
+            } else {
+                email.classList.add('valid');
+            }
+            
+            // Phone
+            const phone = document.getElementById('phone');
+            const phoneRegex = /^\d{10}$/;
+            if (!phoneRegex.test(phone.value)) {
+                document.getElementById('phoneError').style.display = 'block';
+                phone.classList.add('invalid');
+                isValid = false;
+            } else {
+                phone.classList.add('valid');
+            }
+            
+            // City
+            const city = document.getElementById('city');
+            if (!city.value.trim()) {
+                document.getElementById('cityError').style.display = 'block';
+                city.classList.add('invalid');
+                isValid = false;
+            } else {
+                city.classList.add('valid');
+            }
+            
+            // State
+            const state = document.getElementById('state');
+            if (!state.value) {
+                document.getElementById('stateError').style.display = 'block';
+                state.classList.add('invalid');
+                isValid = false;
+            } else {
+                state.classList.add('valid');
+            }
+            
+            // Password
+            const password = document.getElementById('password');
+            if (password.value.length < 6) {
+                document.getElementById('passwordError').style.display = 'block';
+                password.classList.add('invalid');
+                isValid = false;
+            } else {
+                password.classList.add('valid');
+            }
+            
+            // Confirm Password
+            const confirmPassword = document.getElementById('confirmPassword');
+            if (confirmPassword.value !== password.value) {
+                document.getElementById('confirmPasswordError').style.display = 'block';
+                confirmPassword.classList.add('invalid');
+                isValid = false;
+            } else if (password.value.length >= 6) {
+                confirmPassword.classList.add('valid');
+            }
+            
+            // If all valid, submit the form
+            if (isValid) {
+                // Store user data in localStorage (simulating a successful registration)
+                const userData = {
+                    firstName: firstName.value.trim(),
+                    lastName: lastName.value.trim(),
+                    email: email.value.trim(),
+                    phone: phone.value.trim(),
+                    city: city.value.trim(),
+                    state: state.value,
+                    loggedIn: true
+                };
+                
+                localStorage.setItem('userData', JSON.stringify(userData));
+                
+                // Redirect to welcome page
+                window.location.href = this.getAttribute('action');
+            }
+        });
+        
+        // Add real-time validation for better UX
+        document.querySelectorAll('input, select').forEach(element => {
+            element.addEventListener('input', function() {
+                if (this.value.trim()) {
+                    this.classList.remove('invalid');
+                    this.classList.add('valid');
+                    const errorId = this.id + 'Error';
+                    if (document.getElementById(errorId)) {
+                        document.getElementById(errorId).style.display = 'none';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

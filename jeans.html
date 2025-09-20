@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeans Collection - ZeeShoo!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f3f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: #e081aa;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            font-style: italic;
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 30px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-links a:hover {
+            color: #5a0a2a;
+        }
+
+        /* Page Banner */
+        .page-banner {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('https://images.unsplash.com/photo-1602293589930-45aad59ba3ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .banner-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .banner-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .banner-content p {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* Shop Container */
+        .shop-container {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #5a0a2a;
+            margin-bottom: 40px;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .product-img {
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #c32268;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .product-info p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #c32268;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-left: 8px;
+            font-size: 1rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 12px;
+            background: #e081aa;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background: #c32268;
+        }
+
+        /* Footer - Improved Alignment */
+        footer {
+            background: #5a0a2a;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .footer-column {
+            padding: 0 15px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: #ec91b8;
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: #e081aa;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #e081aa;
+            transform: translateY(-3px);
+        }
+
+        .newsletter input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #5a0a2a;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast i {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li id="logo">ZeeShoo!</li>
+                    <li class="search-bar">
+                        <input type="text" placeholder="Search for jeans, jackets...">
+                    </li>
+                    <li class="nav-links">
+                        <a href="home.html"><i class="fas fa-home"></i> Home</a>
+                        <a href="shop.html"><i class="fas fa-store"></i> Shop</a>
+                        <a href="about2.html"><i class="fas fa-user"></i> About</a>
+                        <a href="cart2.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <div class="page-banner">
+        <div class="banner-content">
+            <h1>Premium Jeans Collection</h1>
+            <p>Discover the perfect fit for every style</p>
+        </div>
+    </div>
+
+    <!-- Shop Content -->
+    <div class="container shop-container">
+        <h2 class="section-title">TRENDING JEANS</h2>
+        
+        <!-- Row 1 -->
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Classic Blue Jeans">
+                    <span class="product-badge">Bestseller</span>
+                </div>
+                <div class="product-info">
+                    <h3>Classic Blue Jeans</h3>
+                    <p>Perfect fit for everyday wear</p>
+                    <div>
+                        <span class="price">₹399</span>
+                        <span class="old-price">₹499</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Classic Blue Jeans', 399, 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80')">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/30.jpg" alt="Denim Jacket Set">
+                    <span class="product-badge">New</span>
+                </div>
+                <div class="product-info">
+                    <h3>Denim Jacket Set</h3>
+                    <p>Complete stylish denim look</p>
+                    <div>
+                        <span class="price">₹599</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Denim Jacket Set', 599, 'img/30.jpg')">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/26.jpg" alt="Distressed Jeans">
+                    <span class="product-badge">Trending</span>
+                </div>
+                <div class="product-info">
+                    <h3>Distressed Jeans</h3>
+                    <p>Edgy and fashionable</p>
+                    <div>
+                        <span class="price">₹289</span>
+                        <span class="old-price">₹379</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Distressed Jeans', 289, 'img/26.jpg')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="product-grid">
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/j3.avif" alt="Black Skinny Jeans">
+                    <span class="product-badge">Popular</span>
+                </div>
+                <div class="product-info">
+                    <h3>Black Skinny Jeans</h3>
+                    <p>Slim fit for a sleek look</p>
+                    <div>
+                        <span class="price">₹329</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Black Skinny Jeans', 329, 'img/j3.avif')">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/j9.avif" alt="High-Waisted Jeans">
+                    <span class="product-badge">New</span>
+                </div>
+                <div class="product-info">
+                    <h3>High-Waisted Jeans</h3>
+                    <p>Flattering and comfortable</p>
+                    <div>
+                        <span class="price">₹499</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('High-Waisted Jeans', 499, 'img/j9.avif')">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/j4.avif" alt="Boyfriend Jeans">
+                    <span class="product-badge">Casual</span>
+                </div>
+                <div class="product-info">
+                    <h3>Girlfriend Jeans</h3>
+                    <p>Relaxed fit for ultimate comfort</p>
+                    <div>
+                        <span class="price">₹389</span>
+                        <span class="old-price">₹489</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Girlfriend Jeans', 389, 'img/j4.avif')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="product-grid">
+            <!-- Product 7 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/j1.avif" alt="Ripped Jeans">
+                    <span class="product-badge">Trending</span>
+                </div>
+                <div class="product-info">
+                    <h3>Ripped Jeans</h3>
+                    <p>Edgy streetwear style</p>
+                    <div>
+                        <span class="price">₹419</span>
+                        <span class="old-price">₹479</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Ripped Jeans', 419, 'img/j1.avif')">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/j5.avif" alt="Mom Jeans">
+                    <span class="product-badge">Vintage</span>
+                </div>
+                <div class="product-info">
+                    <h3>Mom Jeans</h3>
+                    <p>Retro high-waisted fit</p>
+                    <div>
+                        <span class="price">₹289</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Mom Jeans', 289, 'img/j5.avif')">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 9 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/j6.avif" alt="Slim Fit Jeans">
+                    <span class="product-badge">Classic</span>
+                </div>
+                <div class="product-info">
+                    <h3>Slim Fit Jeans</h3>
+                    <p>Tailored for a sleek look</p>
+                    <div>
+                        <span class="price">₹277</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Slim Fit Jeans', 277, 'img/j6.avif')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="product-grid">
+            <!-- Product 10 -->
+
+
+
+              <div class="product-card">
+                <div class="product-img">
+                    <img src="img/j8.avif" alt="Cropped Jeans">
+                    <span class="product-badge">Summer</span>
+                </div>
+                <div class="product-info">
+                    <h3>Cropped Jeans</h3>
+                    <p>Perfect for warm weather</p>
+                    <div>
+                        <span class="price">₹399</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Cropped Jeans', 399, 'img/j8.avif')">Add to Cart</button>
+                </div>
+            </div>
+       
+
+          
+            <!-- Product 11 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/j2.avif" alt="Dark Wash Jeans">
+                    <span class="product-badge">Classic</span>
+                </div>
+                <div class="product-info">
+                    <h3>Dark Wash Jeans</h3>
+                    <p>Versatile for any occasion</p>
+                    <div>
+                        <span class="price">₹489</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Dark Wash Jeans', 489, 'img/j2.avif')">Add to Cart</button>
+                </div>
+            </div>
+              <!-- Product 12 -->
+               <div class="product-card">
+                <div class="product-img">
+                    <img src="img/j7.avif" alt="Wide-Leg Jeans">
+                    <span class="product-badge">Trending</span>
+                </div>
+                <div class="product-info">
+                    <h3>Wide-Leg Jeans</h3>
+                    <p>Comfortable and stylish</p>
+                    <div>
+                        <span class="price">₹509</span>
+                        <span class="old-price">₹579</span>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Wide-Leg Jeans', 509, 'img/j7.avif')">Add to Cart</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer - Improved Alignment -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ZeeShoo!</h3>
+                    <p>Your one-stop destination for trendy and elegant fashion. We bring you the latest styles at affordable prices.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Best Sellers</a></li>
+                        <li><a href="#">Special Offers</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new arrivals and special offers!</p>
+                    <input type="email" placeholder="Your email address" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 20px; border: none;">
+                    <button class="add-to-cart" style="width: 40%; height: 15%; border-radius: 15px;">Subscribe</button>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2023 ZeeShoo! All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message">Item added to cart!</span>
+    </div>
+
+    <script>
+        // Function to add items to cart
+        function addToCart(name, price, image) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Check if item already exists in cart
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    image: image,
+                    quantity: 1
+                });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Show toast notification
+            showToast(`${name} added to cart!`);
+            
+            // Update cart count in navigation
+            updateCartCount();
+        }
+        
+        // Function to show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            // Hide after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Function to update cart count in navigation
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            // Update cart count in navigation
+            const cartLinks = document.querySelectorAll('.nav-links a[href="cart2.html"]');
+            cartLinks.forEach(link => {
+                if (totalItems > 0) {
+                    link.innerHTML = `<i class="fas fa-shopping-cart"></i> Cart (${totalItems})`;
+                } else {
+                    link.innerHTML = '<i class="fas fa-shopping-cart"></i> Cart';
+                }
+            });
+        }
+        
+        // Initialize cart count on page load
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+    </script>
+</body>
+</html>

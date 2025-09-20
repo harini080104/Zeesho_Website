@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floral Collection - ZeeShoo!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f3f6;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #e081aa;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        #logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            font-style: italic;
+        }
+        
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 30px;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            max-width: 500px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .nav-links a:hover {
+            color: #5a0a2a;
+        }
+        
+        /* Collection Header */
+        .collection-header {
+            max-width: 1200px;
+            margin: 40px auto 20px;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .collection-title {
+            color: #5a0a2a;
+            font-size: 36px;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .collection-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: #e081aa;
+        }
+        
+        .collection-description {
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        
+        /* Product Grid */
+        .product-grid-container {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+        .product-card:nth-child(5) { animation-delay: 0.5s; }
+        .product-card:nth-child(6) { animation-delay: 0.6s; }
+        .product-card:nth-child(7) { animation-delay: 0.7s; }
+        .product-card:nth-child(8) { animation-delay: 0.8s; }
+        .product-card:nth-child(9) { animation-delay: 0.9s; }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .product-img {
+            height: 320px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #c32268;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 2;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 8px;
+            font-size: 18px;
+            color: #5a0a2a;
+        }
+        
+        .product-info p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .price {
+            color: #c32268;
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 16px;
+            margin-left: 5px;
+        }
+        
+        .add-to-cart-sm {
+            width: 100%;
+            padding: 12px 0;
+            background-color: #e081aa;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .add-to-cart-sm:hover {
+            background-color: #c32268;
+        }
+        
+        /* Reviews Section */
+        .reviews-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            color: #5a0a2a;
+            font-size: 28px;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #e081aa;
+        }
+        
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .review-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+        
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .reviewer-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .reviewer-info h4 {
+            color: #5a0a2a;
+            margin-bottom: 5px;
+        }
+        
+        .rating {
+            color: #ffc107;
+            font-size: 14px;
+        }
+        
+        .review-content {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .review-date {
+            color: #888;
+            font-size: 14px;
+        }
+        
+        
+        
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #5a0a2a;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast i {
+            font-size: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #5a0a2a;
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 150px;
+            height: 2px;
+            background-color: #ec91b8;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #e081aa;
+            padding-left: 5px;
+        }
+        /* subcribe button */
+    
+        .footer-column .btn{
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: #e081aa;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-column .btn:hover {
+            background-color: #a71851;
+        }
+        
+        .newsletter input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 15px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: #e081aa;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Rupee symbol styling */
+        .rupee-symbol {
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .collection-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul>
+                <li id="logo">ZeeShoo!</li>
+                <li class="search-bar">
+                    <input type="text" placeholder="Search for dresses, sarees, tops...">
+                </li>
+                <li class="nav-links">
+                    <a href="home.html"><i class="fas fa-home"></i> Home</a>
+                    <a href="shop.html"><i class="fas fa-store"></i> Shop</a>
+                    <a href="about2.html"><i class="fas fa-user"></i> About</a>
+                    <a href="cart2.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message">Item added to cart!</span>
+    </div>
+
+    <!-- Collection Header -->
+    <div class="collection-header">
+        <h1 class="collection-title">Floral Print Dresses Collection</h1>
+        <p class="collection-description">Discover our beautiful selection of floral print dresses perfect for any occasion. From casual day dresses to elegant evening wear, our collection features the latest trends in floral fashion with comfortable fits and flattering silhouettes.</p>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid-container">
+        <div class="product-grid">
+            <!-- Row 1 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/11.webp">
+                    <span class="product-badge">New Arrival</span>
+                </div>
+                <div class="product-info">
+                    <h3>Floral Print A-Line Dress</h3>
+                    <p>Beautiful floral print with comfortable fit and flattering A-line silhouette</p>
+                    <span class="price"><span class="rupee-symbol">₹</span>569 <span class="old-price"><span class="rupee-symbol">₹</span>799</span></span>
+                    <button class="add-to-cart-sm" onclick="addToCart('Floral Print A-Line Dress', 569, 'img/11.webp')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/flora1.webp" alt="Floral Maxi Dress">
+                    <span class="product-badge">Bestseller</span>
+                </div>
+                <div class="product-info">
+                    <h3>Floral Maxi Dress</h3>
+                    <p>Elegant maxi length dress with beautiful floral pattern</p>
+                    <span class="price"><span class="rupee-symbol">₹</span>799 <span class="old-price"><span class="rupee-symbol">₹</span>899</span></span>
+                    <button class="add-to-cart-sm" onclick="addToCart('Floral Maxi Dress', 799, 'img/flora1.webp')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/flora4.webp" alt="Casual Floral Top">
+                    <span class="product-badge">Sale</span>
+                </div>
+                <div class="product-info">
+                    <h3>Casual Floral Top</h3>
+                    <p>Perfect for party wear with comfortable cotton blend</p>
+                    <span class="price"><span class="rupee-symbol">₹</span>579 <span class="old-price"><span class="rupee-symbol">₹</span>659</span></span><br>
+                    <button class="add-to-cart-sm" onclick="addToCart('Casual Floral Top', 579, 'img/flora4.webp')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Row 2 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/floral3.jpg" alt="Printed Floral Dress">
+                    <span class="product-badge">Popular</span>
+                </div>
+                <div class="product-info">
+                    <h3>Long Elegant Floral</h3>
+                    <p>Printed floral dress for ethnic wear occasions</p>
+                    <span class="price"><span class="rupee-symbol">₹</span>879</span>
+                    <button class="add-to-cart-sm" onclick="addToCart('Long Elegant Floral', 999, 'img/floral3.jpg')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/floral2.jpg" alt="Classic Floral Dress">
+                </div>
+                <div class="product-info">
+                    <h3>Classic Floral Dress</h3>
+                    <p>Timeless floral design suitable for all occasions</p>
+                    <span class="price"><span class="rupee-symbol">₹</span>989 <span class="old-price"><span class="rupee-symbol">₹</span>1299</span></span>
+                    <button class="add-to-cart-sm" onclick="addToCart('Classic Floral Dress', 489, 'img/floral2.jpg')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/floral5.jpg" alt="Short Floral Dress">
+                    <span class="product-badge">New</span>
+                </div>
+                <div class="product-info">
+                    <h3>Short Floral Dress</h3>
+                    <p>Short and sweet floral dress for easy wear</p>
+                    <span class="price"><span class="rupee-symbol">₹</span>289 <span class="old-price"><span class="rupee-symbol">₹</span>499</span></span>
+                    <button class="add-to-cart-sm" onclick="addToCart('Short Floral Dress', 289, 'img/floral5.jpg')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <!-- Row 3 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/flora8.jpg" alt="Party Floral Dress">
+                    <span class="product-badge">Limited</span>
+                </div>
+                <div class="product-info">
+                    <h3>Party Floral Dress</h3>
+                    <p>Special design for party occasions and events</p>
+                    <span class="price"><span class="rupee-symbol">₹</span>789</span>
+                    <button class="add-to-cart-sm" onclick="addToCart('Party Floral Dress', 899, 'img/flora8.jpg')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/floral7.jpg" alt="Summer Floral Dress">
+                    <span class="product-badge">Sale</span>
+                </div>
+                <div class="product-info">
+                    <h3>Summer Floral Dress</h3>
+                    <p>Lightweight and comfortable summer wear</p>
+                    <span class="price"><span class="rupee-symbol">₹</span>328 <span class="old-price"><span class="rupee-symbol">₹</span>599</span></span>
+                    <button class="add-to-cart-sm" onclick="addToCart('Summer Floral Dress', 328, 'img/floral7.jpg')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="img/1.jpg" alt="Printed Floral Kurti">
+                    <span class="product-badge">Trending</span>
+                </div>
+                <div class="product-info">
+                    <h3>Printed Floral Kurti</h3>
+                    <p>Long printed floral for ethnic and casual wear</p>
+                    <span class="price"><span class="rupee-symbol">₹</span>539 <span class="old-price"><span class="rupee-symbol">₹</span>799</span></span>
+                    <button class="add-to-cart-sm" onclick="addToCart('Printed Floral Kurti', 639, 'img/1.jpg')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <div class="reviews-section">
+        <h2 class="section-title">Customer Reviews</h2>
+        <div class="reviews-container">
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Reviewer">
+                    </div>
+                    <div class="reviewer-info">
+                        <h4>Priya Sharma</h4>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="review-content">I absolutely love my floral A-line dress from ZeeShoo! The fit is perfect and the material is so comfortable. I've received so many compliments every time I wear it.</p>
+                <div class="review-date">Reviewed on April 15, 2023</div>
+            </div>
+            
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Reviewer">
+                    </div>
+                    <div class="reviewer-info">
+                        <h4>Sunita Patel</h4>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="review-content">The maxi floral dress is stunning! The print is even more beautiful in person and the length is perfect for my height (I'm 5'7"). Will definitely be purchasing more items from this collection.</p>
+                <div class="review-date">Reviewed on May 2, 2023</div>
+            </div>
+            
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="reviewer-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Reviewer">
+                    </div>
+                    <div class="reviewer-info">
+                        <h4>Meera Desai</h4>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="review-content">I purchased the floral wrap dress for a wedding and it was perfect! The material is high quality and the fit was flattering. I felt comfortable and stylish all day.</p>
+                <div class="review-date">Reviewed on June 10, 2023</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>ZeeShoo!</h3>
+                <p>Your one-stop destination for trendy and elegant fashion. We bring you the latest styles at affordable prices.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Best Sellers</a></li>
+                    <li><a href="#">Special Offers</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Return Policy</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column newsletter">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get updates on new arrivals and special offers!</p><br>
+                <input type="email" placeholder="Your email address"><br>
+                <button class="btn">Subscribe</button>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 ZeeShoo! All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Function to add item to cart
+        function addToCart(name, price, image) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    image: image,
+                    quantity: 1
+                });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Show toast notification
+            showToast(`${name} added to cart!`);
+            
+            // Update cart count in navigation
+            updateCartCount();
+        }
+        
+        // Function to show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            
+            // Hide after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Function to update cart count in navigation
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            // Update cart count in navigation
+            const cartLinks = document.querySelectorAll('.nav-links a[href="cart2.html"]');
+            cartLinks.forEach(link => {
+                if (totalItems > 0) {
+                    link.innerHTML = `<i class="fas fa-shopping-cart"></i> Cart (${totalItems})`;
+                } else {
+                    link.innerHTML = '<i class="fas fa-shopping-cart"></i> Cart';
+                }
+            });
+        }
+        
+        // Initialize cart count on page load
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+        
+        // Add hover effect to product cards
+        const productCards = document.querySelectorAll('.product-card');
+        productCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px)';
+                card.style.boxShadow = '0 15px 30px rgba(0,0,0,0.15)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+            });
+        });
+    </script>
+</body>
+</html>
